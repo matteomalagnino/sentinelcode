@@ -3,7 +3,7 @@
   "parameters": {
     "workbookDisplayName": {
       "type": "string",
-      "defaultValue": "New workbook Matteotest",
+      "defaultValue": "New workbook Matteotest44",
       "metadata": {
         "description": "The friendly name for the workbook that is used in the Gallery or Saved List.  This name must be unique within a resource group."
       }
@@ -13,13 +13,6 @@
       "defaultValue": "sentinel",
       "metadata": {
         "description": "The gallery that the workbook will been shown under. Supported values include workbook, tsg, etc. Usually, this is 'workbook'"
-      }
-    },
-    "workbookSourceId": {
-      "type": "string",
-      "defaultValue": "/subscriptions/3ad3dc58-4dd0-4b95-a2c1-df9529e9a28c/resourcegroups/sentinel/providers/microsoft.operationalinsights/workspaces/sentinelmod404054",
-      "metadata": {
-        "description": "The id of resource instance to which the workbook will be associated"
       }
     },
     "workbookId": {
@@ -52,11 +45,7 @@
           },
           "name": "query - 2"
         }
-      ],
-      "isLocked": false,
-      "fallbackResourceIds": [
-        "/subscriptions/3ad3dc58-4dd0-4b95-a2c1-df9529e9a28c/resourcegroups/sentinel/providers/microsoft.operationalinsights/workspaces/sentinelmod404054"
-      ],
+     
       "fromTemplateId": "sentinel-UserWorkbook"
     }
   },
