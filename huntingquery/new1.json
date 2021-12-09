@@ -3,7 +3,7 @@
     {
       "displayName": "HuntingMat01",
       "description": "test",
-      "query": "OfficeActivity | where OfficeWorkload =~ "MicrosoftTeams" | where Operation =~ "BotAddedToTeam" | summarize Start=max(TimeGenerated), End=min(TimeGenerated), Teams = makeset(TeamName) | extend CountOfTeams = array_length(Teams) | extend TimeDelta = End - Start | where CountOfTeams > threshold | where TimeDelta >= time_threshold | project Start, End, Teams, CountOfTeams | extend timestamp = Start \"-noni -ep bypass $\"",
+      "query": "SecurityAlert"
       "tactics": [
         "Persistence",
         "LateralMovement",
