@@ -2,44 +2,16 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "workspace": {
-            "type": "String"
-        },
-        "query_id": {
-            "defaultValue": "[newGuid()]",
-            "type": "String"
-        },
-        "displayname": {
-            "type": "string",
-            "metadata": {
-                "description": "test123456789"
-            }
-        },
-        "query": {
-            "type": "string",
-            "metadata": {
-                "description": "SecurityEvent | where EventID == \"4688\" | where CommandLine contains \"-noni -ep bypass $\""
-            }
-        },
-        "tactics": {
-            "type": "String",
-            "metadata": {
-                "description": "DefenseEvasion, Impact"
-            }
-        }
-    },
-    "functions": [],
-    "variables": {},
     "resources": [
         {
             "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
             "apiVersion": "2021-09-01-preview",
-            "name": "[concat(parameters('workspace'), '/',parameters('query_id'))]",
+            "name": "esempio1",
             "properties": {
                 "etag": "*",
                 "Category": "Hunting Queries",
-                "DisplayName": "[parameters('displayname')]", 
-                "Query": "[parameters('query')]",
+                "DisplayName": "esempio1", 
+                "Query": "SecurityEvent | where EventID == \"4688\" | where CommandLine contains \"-noni -ep bypass $\"",
                 "Tags": [
                     {
                         "Name": "description",
@@ -47,11 +19,11 @@
                     },
                     {
                         "Name": "tactics",
-                        "Value": "[parameters('tactics')]"
+                        "Value": "Execution"
                     }
                 ]
             }
         }
     ],
-    "outputs": {}
+}
 }
