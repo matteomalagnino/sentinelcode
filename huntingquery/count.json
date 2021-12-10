@@ -33,7 +33,7 @@
     "resources": [
         {
             "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
-            "apiVersion": "2021-09-01-preview"",
+            "apiVersion": "2021-09-01-preview",
             "name": "[concat(parameters('workspace'), '/',parameters('query_id'))]",
             "properties": {
                 "etag": "*",
