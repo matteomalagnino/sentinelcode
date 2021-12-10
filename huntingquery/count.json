@@ -1,34 +1,16 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-"parameters": {
-    "displayname": {
-      "defaultValue": "Count VMs by OS",
-      "type": "String",
-      "metadata": {
-        "description": "The name of the shared query."
-      }
-    },
-    "query": {
-      "defaultValue": "Resources | where type =~ 'Microsoft.Compute/virtualMachines' | summarize count() by tostring(properties.storageProfile.osDisk.osType)",
-      "type": "String",
-      "metadata": {
-        "description": "The Azure Resource Graph query to be saved to the shared query."
-      }
-    },
-    "queryDescription": {
-      "defaultValue": "This shared query counts all virtual machine resources and summarizes by the OS type.",
-      "type": "String",
-      "metadata": {
-        "description": "The description of the saved Azure Resource Graph query."
-		}
-        },
-        "tactics": {
-		"defaultValue": "Impact, CommandAndControl",
-            "type": "String",
-            "metadata": {
-                "description": "Allowed value is a comma separated subset of the following values: DefenseEvasion, Impact, CommandAndControl, Collection, LateralMovement, PreAttack, Exfiltration, Discovery, CredentialAccess, PrivilegeEscalation, Persistence, Execution, InitialAccess"
-            }
-        }
-    },
- }
+  "analytics": [
+    {
+      "DisplayName": "Example123e",
+      "Description": "This the description of the query.",
+      "Query": "
+      // sample query
+      Syslog
+      | limit  10  ",
+  "Tactics": [
+        "Persistence",
+        "Execution"
+      ]
+    }
+  ]
+}
