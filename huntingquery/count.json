@@ -1,26 +1,54 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "queryName": {
-      "defaultValue": "Count VMs by OS",
-      "type": "String",
-      "metadata": {
-        "description": "The name of the shared query."
-      }
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+              "query_id": {
+            "defaultValue": "[newGuid()]",
+            "type": "String"
+        },
+        "displayname": {
+            "type": "string",
+            "metadata": {
+                "description": "test123"
+            }
+        },
+        "query": {
+            "type": "string",
+            "metadata": {
+                "description": "Resources | where type =~ 'Microsoft.Compute/virtualMachines' | summarize count() by tostring(properties.storageProfile.osDisk.osType)"
+            }
+        },
+        "tactics": {
+            "type": "String",
+            "metadata": {
+                "description": "Allowed value is a comma separated subset of the following values: DefenseEvasion, Impact, CommandAndControl, Collection, LateralMovement, PreAttack, Exfiltration, Discovery, CredentialAccess, PrivilegeEscalation, Persistence, Execution, InitialAccess"
+            }
+        }
     },
-    "queryCode": {
-      "defaultValue": "Resources | where type =~ 'Microsoft.Compute/virtualMachines' | summarize count() by tostring(properties.storageProfile.osDisk.osType)",
-      "type": "String",
-      "metadata": {
-        "description": "The Azure Resource Graph query to be saved to the shared query."
-      }
-    },
-    "queryDescription": {
-      "defaultValue": "This shared query counts all virtual machine resources and summarizes by the OS type.",
-      "type": "String",
-      "metadata": {
-        "description": "The description of the saved Azure Resource Graph query."
-      }
-    }
-  }
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "apiVersion": "2020-08-01",
+            "name": "[concat(parameters('workspace'), '/',parameters('query_id'))]",
+            "properties": {
+                "etag": "*",
+                "Category": "Hunting Queries",
+                "DisplayName": "[parameters('displayname')]", 
+                "Query": "[parameters('query')]",
+                "Tags": [
+                    {
+                        "Name": "description",
+                        "Value": "Demo"
+                    },
+                    {
+                        "Name": "tactics",
+                        "Value": "[parameters('tactics')]"
+                    }
+                ]
+            }
+        }
+    ],
+    "outputs": {}
+}
