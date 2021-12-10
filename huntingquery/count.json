@@ -1,13 +1,57 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-  "contentVersion": "1.0.0.0",
-      "displayname": {
-      "value": "test123"
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        },
+        "query_id": {
+            "defaultValue": "[newGuid()]",
+            "type": "String"
+        },
+        "displayname": {
+            "type": "string",
+            "metadata": {
+                "description": "Name for your hunting query"
+            }
+        },
+        "query": {
+            "type": "string",
+            "metadata": {
+                "description": "Type your query here (f.e. SigninLogs | take 10)"
+            }
+        },
+        "tactics": {
+            "type": "String",
+            "metadata": {
+                "description": "Allowed value is a comma separated subset of the following values: DefenseEvasion, Impact, CommandAndControl, Collection, LateralMovement, PreAttack, Exfiltration, Discovery, CredentialAccess, PrivilegeEscalation, Persistence, Execution, InitialAccess"
+            }
+        }
     },
-    "query": {
-      "value": "OfficeActivity | where OfficeWorkload =~ \"MicrosoftTeams\" | where Operation =~ \"BotAddedToTeam\" | summarize Start=max(TimeGenerated), End=min(TimeGenerated), Teams = makeset(TeamName) | extend CountOfTeams = array_length(Teams) | extend TimeDelta = End - Start | where CountOfTeams > threshold | where TimeDelta >= time_threshold | project Start, End, Teams, CountOfTeams | extend timestamp = Start"
-    },
-    "tactics": {
-      "value": "Access"
-    }
-  }
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "apiVersion": "2020-08-01",
+            "name": "[concat(parameters('workspace'), '/',parameters('query_id'))]",
+            "properties": {
+                "etag": "*",
+                "Category": "Hunting Queries",
+                "DisplayName": "[parameters('displayname')]", 
+                "Query": "[parameters('query')]",
+                "Tags": [
+                    {
+                        "Name": "description",
+                        "Value": "Demo"
+                    },
+                    {
+                        "Name": "tactics",
+                        "Value": "[parameters('tactics')]"
+                    }
+                ]
+            }
+        }
+    ],
+    "outputs": {}
+}
