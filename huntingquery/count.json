@@ -6,7 +6,7 @@
             "type": "String"
         }
     },
-    "resources": [
+    "resources": 
         {
     
             "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
@@ -36,4 +36,5 @@
                 
             }
         }
+		}
     
