@@ -13,8 +13,8 @@
             "apiVersion": "2021-09-01-preview",
             "properties": {
 			"Category": "Hunting Queries",
-			"displayName": "Search Test",
-			"query": "Heartbeat | summarize Count() by Computer | take a",
+			"displayName": "TestX",
+			"query": "AzureActivity | where OperationNameValue in (opValues) | where ActivitySubstatusValue in ("Created", "OK") | sort by TimeGenerated desc | extend timestamp = TimeGenerated, AccountCustomEntity = Caller, IPCustomEntity = CallerIpAddress",
 			"Tags": [
                     {
                         "Name": "description",
@@ -22,7 +22,7 @@
                     },
                     {
                         "Name": "tactics",
-                        "Value": "Initial Access"  
+                        "Value": "Impact"  
 						}
 					]
             
@@ -30,6 +30,8 @@
 		}
 }
     
+
+
 
 
 
