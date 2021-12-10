@@ -1,41 +1,28 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-              "query_id": {
-            "defaultValue": "[newGuid()]",
+        "workspace": {
             "type": "String"
-        },
-        "displayname": "Hunting123!",
-        "query":  "Resources | where type =~ 'Microsoft.Compute/virtualMachines' | summarize count() by tostring(properties.storageProfile.osDisk.osType)",
-            
-        
-        "tactics": "Persistence, LateralMovement",
-           },
-    "functions": [],
-    "variables": {},
-    "resources": [
-        {
-            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
-            "apiVersion": "2020-08-01",
-            "name": "[concat(parameters('workspace'), '/',parameters('query_id'))]",
-            "properties": {
-                "etag": "*",
-                "Category": "Hunting Queries",
-                "DisplayName": "[parameters('displayname')]", 
-                "Query": "[parameters('query')]",
-                "Tags": [
-                    {
-                        "Name": "description",
-                        "Value": "Demo"
-                    },
-                    {
-                        "Name": "tactics",
-                        "Value": "[parameters('tactics')]"
-                    }
-                ]
-            }
         }
-    ],
-    "outputs": {}
+    },
+	
+	{
+"properties": {
+    “Category”: “Hunting Queries”,
+    "DisplayName": "HuntingRule02",
+    "Query": "SecurityEvent | where EventID == \"4688\" | where CommandLine contains \"-noni -ep bypass $\"",
+    “Tags”: [
+        { 
+        “Name”: “Description”,
+        “Value”: “Test Hunting Query”
+        },
+        { 
+        “Name”: “Tactics”,
+        “Value”: “Execution, Discovery”
+        }
+        ]        
+    }
 }
+	
+    
