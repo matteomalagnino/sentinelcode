@@ -9,16 +9,10 @@
     "resources": 
         {
     
-            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
-           
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches", 
             "apiVersion": "2021-09-01-preview",
-           {
-  "properties": {
-    "category": "Saved Search Test Category",
-    "displayName": "Create or Update Saved Search Test",
-    "version": 2,
-    "functionAlias": "heartbeat_func",
-    "functionParameters": "a:int=1",
+            "properties": {
+       "displayName": "Create or Update Saved Search Test",
     "query": "Heartbeat | summarize Count() by Computer | take a",
     "tags": [
       {
@@ -34,7 +28,7 @@
                         ]
                     }
                 
-            }
+            
         }
 		}
     
