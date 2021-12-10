@@ -10,7 +10,7 @@
         "query":  "Resources | where type =~ 'Microsoft.Compute/virtualMachines' | summarize count() by tostring(properties.storageProfile.osDisk.osType)"
             
         
-        "tactics": [Persistence, LateralMovement]
+        "tactics": "Persistence, LateralMovement"
            },
     "functions": [],
     "variables": {},
