@@ -4,33 +4,54 @@
     "parameters": {
         "workspace": {
             "type": "String"
+        },
+        "query_id": {
+            "defaultValue": "[newGuid()]",
+            "type": "String"
+        },
+        "displayname": {
+            "type": "string",
+            "metadata": {
+                "description": "test123456789"
+            }
+        },
+        "query": {
+            "type": "string",
+            "metadata": {
+                "description": "SecurityEvent | where EventID == \"4688\" | where CommandLine contains \"-noni -ep bypass $\""
+            }
+        },
+        "tactics": {
+            "type": "String",
+            "metadata": {
+                "description": "DefenseEvasion, Impact"
+            }
         }
     },
+    "functions": [],
+    "variables": {},
     "resources": [
         {
-"id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/savedSearches/7beb89a6-8dd1-46fd-bbb1-7ca094d7f33f')]",
-            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/7beb89a6-8dd1-46fd-bbb1-7ca094d7f33f')]",
-            "type": "Microsoft.OperationalInsights/workspaces/providers/savedSearches/",
-             "apiVersion": "2021-09-01-preview",
-"properties": {
-    "Category": "Hunting Queries",
-    "DisplayName": "HuntingRule02",
-    "Query": "SecurityEvent | where EventID == \"4688\" | where CommandLine contains \"-noni -ep bypass $\"",
-    "Tags": [
-        { 
-        "Name": "Description",
-        "Value": "Test Hunting Query"
-        },
-        { 
-        "Name": "Tactics",
-        "Value": "Execution, Discovery"
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "apiVersion": "2021-09-01-preview"",
+            "name": "[concat(parameters('workspace'), '/',parameters('query_id'))]",
+            "properties": {
+                "etag": "*",
+                "Category": "Hunting Queries",
+                "DisplayName": "[parameters('displayname')]", 
+                "Query": "[parameters('query')]",
+                "Tags": [
+                    {
+                        "Name": "description",
+                        "Value": "Demo"
+                    },
+                    {
+                        "Name": "tactics",
+                        "Value": "[parameters('tactics')]"
+                    }
+                ]
+            }
         }
-        ]        
-    }
-
+    ],
+    "outputs": {}
 }
-]
-}
-	
-
-	
