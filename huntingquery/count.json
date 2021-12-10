@@ -6,24 +6,18 @@
             "defaultValue": "[newGuid()]",
             "type": "String"
         },
-        "displayname": {
-            "type": "string",
-            "metadata": {
-                "description": "test123"
-            }
-        },
+        "displayname": "Hunting123!"
         "query": {
             "type": "string",
             "metadata": {
                 "description": "Resources | where type =~ 'Microsoft.Compute/virtualMachines' | summarize count() by tostring(properties.storageProfile.osDisk.osType)"
             }
         },
-        "tactics": {
-            "type": "String",
-            "metadata": {
-                "description": "Allowed value is a comma separated subset of the following values: DefenseEvasion, Impact, CommandAndControl, Collection, LateralMovement, PreAttack, Exfiltration, Discovery, CredentialAccess, PrivilegeEscalation, Persistence, Execution, InitialAccess"
-            }
-        }
+        "tactics": [
+        "Persistence",
+        "LateralMovement",
+        "Collection"
+      ]
     },
     "functions": [],
     "variables": {},
