@@ -12,16 +12,25 @@
             "type": "Microsoft.OperationalInsights/workspaces/savedSearches", 
             "apiVersion": "2021-09-01-preview",
             "properties": {
-       "displayName": "Create or Update Saved Search Test",
-    "query": "Heartbeat | summarize Count() by Computer | take a",
-"Tactics": "Persistence"
-    
-  
-
-                        
-                    }
-                
+			"Category": "Hunting Queries",
+			"displayName": "Search Test",
+			"query": "Heartbeat | summarize Count() by Computer | take a",
+			"Tags": [
+                    {
+                        "Name": "description",
+                        "Value": "Demo"
+                    },
+                    {
+                        "Name": "tactics",
+                        "Value": "Initial Access"  
+						}
+					]
             
-        }
+				}
 		}
+}
     
+
+
+
+   
