@@ -2,14 +2,14 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
 "parameters": {
-    "queryName": {
+    "displayname": {
       "defaultValue": "Count VMs by OS",
       "type": "String",
       "metadata": {
         "description": "The name of the shared query."
       }
     },
-    "queryCode": {
+    "query": {
       "defaultValue": "Resources | where type =~ 'Microsoft.Compute/virtualMachines' | summarize count() by tostring(properties.storageProfile.osDisk.osType)",
       "type": "String",
       "metadata": {
