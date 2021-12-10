@@ -7,12 +7,9 @@
             "type": "String"
         },
         "displayname": "Hunting123!"
-        "query": {
-            "type": "string",
-            "metadata": {
-                "description": "Resources | where type =~ 'Microsoft.Compute/virtualMachines' | summarize count() by tostring(properties.storageProfile.osDisk.osType)"
-            }
-        },
+        "query":  "Resources | where type =~ 'Microsoft.Compute/virtualMachines' | summarize count() by tostring(properties.storageProfile.osDisk.osType)"
+            
+        
         "tactics": [
         "Persistence",
         "LateralMovement",
