@@ -8,27 +8,32 @@
     },
     "resources": [
         {
-"id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/savedSearches/7beb89a6-8dd1-46fd-bbb1-7ca094d7f33f')]",
-            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/7beb89a6-8dd1-46fd-bbb1-7ca094d7f33f')]",
-            "type": "Microsoft.OperationalInsights/workspaces/providers/savedSearches/",
-             "apiVersion": "2021-09-01-preview",
-"properties": {
-    "Category": "Hunting Queries",
-    "DisplayName": "HuntingRule02",
-    "Query": "SecurityEvent | where EventID == \"4688\" | where CommandLine contains \"-noni -ep bypass $\"",
-    "Tags": [
-        { 
-        "Name": "Description",
-        "Value": "Test Hunting Query"
-        },
-        { 
-        "Name": "Tactics",
-        "Value": "Execution, Discovery"
+    
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+           
+            "apiVersion": "2021-09-01-preview",
+           {
+  "properties": {
+    "category": "Saved Search Test Category",
+    "displayName": "Create or Update Saved Search Test",
+    "version": 2,
+    "functionAlias": "heartbeat_func",
+    "functionParameters": "a:int=1",
+    "query": "Heartbeat | summarize Count() by Computer | take a",
+    "tags": [
+      {
+        "name": "Group",
+        "value": "Computer"
+      }
+	  {
+	  "name": "Tactics"
+	  "Value": "Persistence"
+    ]
+  }
+}
+                        ]
+                    }
+                
+            }
         }
-        ]        
-    }
-
-}
-]
-}
-	
+    
