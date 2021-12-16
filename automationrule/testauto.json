@@ -1,0 +1,94 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "string"
+        }
+    },
+       "resources": [
+        {
+            "type": "Microsoft.SecurityInsights/automationRules",
+            "name": "[concat(parameters('workspace'), '/5c78f7ea-3ebf-459f-a3e0-0d735686380c')]",
+            "apiVersion": "2019-01-01-preview",
+            "properties": {
+                "category": "Automation Rules",
+				"displayName": "testauto1",
+                "triggeringLogic": {
+                    "isEnabled": true,
+                    "expirationTimeUtc": null,
+                    "triggersOn": "Incidents",
+                    "triggersWhen": "Created",
+                    "conditions": [
+                            {
+                                "conditionType": "Property",
+                                "conditionProperties": {
+                                    "propertyName": "IncidentRelatedAnalyticRuleIds",
+                                    "operator": "Contains",
+                                    "propertyValues": [
+                                        "[resourceId('Microsoft.OperationalInsights/workspaces/providers/alertRules',parameters('existingWorkspaceName'),'Microsoft.SecurityInsights',parameters('existingRuleId'))]"
+                                    ]
+                                }
+                            },
+                            {
+                                "conditionType": "Property",
+                                "conditionProperties": {
+                                    "propertyName": "IncidentSeverity",
+                                    "operator": "Equals",
+                                    "propertyValues": [
+                                        "High"
+                                    ]
+                                }
+                            },
+                            {
+                                "conditionType": "Property",
+                                "conditionProperties": {
+                                    "propertyName": "IncidentTactics",
+                                    "operator": "Contains",
+                                    "propertyValues": [
+                                        "InitialAccess",
+                                        "Execution"
+                                    ]
+                                }
+                            },
+                            {
+                                "conditionType": "Property",
+                                "conditionProperties": {
+                                    "propertyName": "IncidentTitle",
+                                    "operator": "Contains",
+                                    "propertyValues": [
+                                        "urgent"
+                                    ]
+                                }
+                            }
+
+
+                    ]
+                },
+                "actions": [
+                    {
+                        "order": 2,
+                        "actionType": "ModifyProperties",
+                        "actionConfiguration": {
+                            "status": "Closed",
+                            "classification": "Undetermined",
+                            "classificationReason": null
+                        }
+                    },
+                    {
+                        "order": 3, 
+                        "actionType": "ModifyProperties", 
+                        "actionConfiguration": {
+                            "labels": [
+                                {
+                                    "labelName": "tag"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "outputs": {}
+}
