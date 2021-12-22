@@ -15,11 +15,7 @@
         "description": "The gallery that the workbook will been shown under. Supported values include workbook, tsg, etc. Usually, this is 'workbook'"
       }
     },
-       "location": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().location]"
-    }
-  },
+      
       "variables": {
     "workbookContent": {
       "version": "Notebook/1.0",
@@ -52,9 +48,8 @@
   },
   "resources": [
     {
-      "name": "t2",
+      "name": "[parameters('workbookId')]",
       "type": "microsoft.insights/workbooks",
-      "location": "[parameters('location')]",
       "apiVersion": "2021-03-08",
       "dependsOn": [],
       "kind": "shared",
