@@ -26,8 +26,7 @@
       "metadata": {
         "description": "The unique guid for this workbook instance"
       }
-    }
-  },
+    },
   "variables": {
     "workbookContent": {
       "version": "Notebook/1.0",
