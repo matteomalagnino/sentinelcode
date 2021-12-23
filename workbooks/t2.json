@@ -1421,21 +1421,25 @@
           "name": "query - 2"
         }
       ],
-      
+      "isLocked": false,
+      "fallbackResourceIds": [
+        "/subscriptions/74f47f9e-1373-472e-94e3-3f33139fa2cb/resourcegroups/rg-sentinel-dewc001/providers/microsoft.operationalinsights/workspaces/log-sentinel-dewc001"
+      ],
+      "fromTemplateId": "sentinel-UserWorkbook"
     }
   },
-  "resources": [
+  "resources": 
     {
       "name": "[concat(parameters('workspace'), '/5c90f7ea-3ebf-459f-a3e0-0d735686380c')]",
       "type": "microsoft.insights/workbooks",
       "apiVersion": "2021-03-08",
-      "kind": "shared",
-      "properties": {
+	    "location": "string",
+          "properties": {
         "displayName": "testcapgemini",
         "version": "1.0",
         "category": "Workbooks"
       }
     }
-  ]
+  
    }
 
