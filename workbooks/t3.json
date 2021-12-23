@@ -3,7 +3,7 @@
   "parameters": {
     "workbookDisplayName": {
       "type": "string",
-      "defaultValue": "04 Capgemini SOC Dashboard",
+      "defaultValue": "10 Capgemini SOC Dashboard",
       "metadata": {
         "description": "The friendly name for the workbook that is used in the Gallery or Saved List.  This name must be unique within a resource group."
       }
@@ -15,9 +15,9 @@
         "description": "The gallery that the workbook will been shown under. Supported values include workbook, tsg, etc. Usually, this is 'workbook'"
       }
     },
-	 "workbookSourceId": {
+    "workbookSourceId": {
       "type": "string",
-      "defaultValue": "/subscriptions/<subscriptionID>/resourcegroups/<rgname>/providers/microsoft.operationalinsights/workspaces/<workspacename>",
+      "defaultValue": "/subscriptions/<subscriptionid>/resourcegroups/<rgname>/providers/microsoft.operationalinsights/workspaces/<workspacename>",
       "metadata": {
         "description": "The id of resource instance to which the workbook will be associated"
       }
@@ -1063,9 +1063,7 @@
                       "crossComponentResources": [
                         "value::all"
                       ],
-                      "value": [
-                        "/subscriptions/74f47f9e-1373-472e-94e3-3f33139fa2cb/resourceGroups/rg-sentinel-dewc001/providers/Microsoft.OperationalInsights/workspaces/log-sentinel-dewc001"
-                      ],
+                      "value": [],
                       "typeSettings": {
                         "resourceTypeFilter": {
                           "microsoft.operationalinsights/workspaces": true
@@ -1444,20 +1442,24 @@
           },
           "name": "query - 2"
         }
+      ],
+      "isLocked": false,
+      "fallbackResourceIds": [
+        "/subscriptions/<subscriptionid>/resourcegroups/<rgname>/providers/microsoft.operationalinsights/workspaces/<workspacename>"
       ]
     }
   },
-    "resources": [
+  "resources": [
     {
       "name": "[parameters('workbookId')]",
       "type": "microsoft.insights/workbooks",
       "location": "[resourceGroup().location]",
-      "apiVersion": "2018-06-17-preview",
+      "apiVersion": "2021-03-08",
       "dependsOn": [],
       "kind": "shared",
       "properties": {
         "displayName": "[parameters('workbookDisplayName')]",
-		"serializedData": "[string(variables('workbookContent'))]",
+        "serializedData": "[string(variables('workbookContent'))]",
         "version": "1.0",
         "sourceId": "[parameters('workbookSourceId')]",
         "category": "[parameters('workbookType')]"
@@ -1471,5 +1473,4 @@
     }
   },
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#"
-  
 }
