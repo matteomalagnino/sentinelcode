@@ -1,15 +1,11 @@
 {
+	"$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#,
   "contentVersion": "1.0.0.0",
-  "parameters": {
-    "workbookDisplayName": {
-      "type": "string",
-      "defaultValue": "01 Capgemini SOC Dashboard",
-      "metadata": {
-        "description": "The friendly name for the workbook that is used in the Gallery or Saved List.  This name must be unique within a resource group."
-      }
-    }
-  },
-   
+ "parameters": {
+        "workspace": {
+            "type": "string"
+        }
+    },
   "variables": {
     "workbookContent": {
       "version": "Notebook/1.0",
@@ -1430,23 +1426,16 @@
   },
   "resources": [
     {
-      "name": "[parameters('workbookDisplayName')]",
+      "name": "[concat(parameters('workspace'), '/5c90f7ea-3ebf-459f-a3e0-0d735686380c')]",
       "type": "microsoft.insights/workbooks",
-           "apiVersion": "2021-03-08",
-      
+      "apiVersion": "2021-03-08",
       "kind": "shared",
       "properties": {
-        "displayName": "[parameters('workbookDisplayName')]",
-        "serializedData": "[string(variables('workbookContent'))]",
+        "displayName": "testcapgemini",
         "version": "1.0",
-             }
+        "category": "Workbooks"
+      }
     }
-  ],
-  "outputs": {
-    "workbookId": {
-      "type": "string",
-      "value": "[resourceId( 'microsoft.insights/workbooks', parameters('workbookId'))]"
-    }
-  },
-  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#"
-}
+  ]
+   }
+
