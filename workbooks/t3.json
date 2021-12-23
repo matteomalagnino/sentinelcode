@@ -3,14 +3,14 @@
   "parameters": {
     "workbookDisplayName": {
       "type": "string",
-      "defaultValue": "01 Capgemini SOC Dashboard",
+      "defaultValue": "02 Capgemini SOC Dashboard",
       "metadata": {
         "description": "The friendly name for the workbook that is used in the Gallery or Saved List.  This name must be unique within a resource group."
       }
     },
     "workbookType": {
       "type": "string",
-      "defaultValue": "sentinel",
+      "defaultValue": "workbook",
       "metadata": {
         "description": "The gallery that the workbook will been shown under. Supported values include workbook, tsg, etc. Usually, this is 'workbook'"
       }
