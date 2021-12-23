@@ -1,6 +1,10 @@
 {
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "workspace": {
+        "type": "string",
+        "defaultValue": "<workspace>"
+    },
     "workbookDisplayName": {
       "type": "string",
       "defaultValue": "04SOC Dashboard",
@@ -17,14 +21,14 @@
     },
     "workbookSourceId": {
       "type": "string",
-      "defaultValue": "/subscriptions/<subscriptionid>/resourcegroups/<rgname>/providers/microsoft.operationalinsights/workspaces/<workspacename>",
+      "defaultValue": "/subscriptions/<subscriptionId>/resourcegroups/sentinel/providers/microsoft.operationalinsights/workspaces/<workspace>",
       "metadata": {
         "description": "xxx"
       }
     },
     "workbookId": {
       "type": "string",
-      "defaultValue": "[newGuid()]",
+      "defaultValue": "f011bdb6-130b-4669-9a5f-1c80bc340f34",
       "metadata": {
         "description": "The unique guid for this workbook instance"
       }
@@ -37,7 +41,7 @@
         {
           "type": 1,
           "content": {
-            "json": "# SOC Dashboard"
+            "json": "# SOC Dashboard (new version)"
           },
           "customWidth": "35",
           "name": "Main headline"
@@ -1434,7 +1438,7 @@
       ],
       "isLocked": false,
       "fallbackResourceIds": [
-        "/subscriptions/<subscriptionid>/resourcegroups/<rgname>/providers/microsoft.operationalinsights/workspaces/<workspacename>"
+        "/subscriptions/<subscriptionId>/resourcegroups/sentinel/providers/microsoft.operationalinsights/workspaces/<workspace>"
       ]
     }
   },
@@ -1447,6 +1451,7 @@
       "dependsOn": [],
       "kind": "shared",
       "properties": {
+        "etag": "*",
         "displayName": "[parameters('workbookDisplayName')]",
         "serializedData": "[string(variables('workbookContent'))]",
         "version": "1.0",
