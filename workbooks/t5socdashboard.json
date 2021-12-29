@@ -3,7 +3,7 @@
   "parameters": {
     "workspace": {
         "type": "string",
-        "defaultValue": "<workspace>"
+        "defaultValue": WorkspaceName
     },
     "workbookDisplayName": {
       "type": "string",
