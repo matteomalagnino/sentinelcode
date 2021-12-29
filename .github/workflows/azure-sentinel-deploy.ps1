@@ -11,7 +11,7 @@ $contentTypeMapping = @{
     "HuntingQuery"=@("Microsoft.OperationalInsights/workspaces/savedSearches");
     "Parser"=@("Microsoft.OperationalInsights/workspaces/savedSearches");
     "Playbook"=@("Microsoft.Web/connections", "Microsoft.Logic/workflows", "Microsoft.Web/customApis");
-    "Workbook"=@("Microsoft.Insights/workbooks");
+    "Workbook"=@("Microsoft.Insights/workbooks/($WorkspaceName)");
     "Metadata"=@("Microsoft.OperationalInsights/workspaces/providers/metadata");
 }
 
