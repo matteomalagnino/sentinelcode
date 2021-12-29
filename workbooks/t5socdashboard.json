@@ -7,7 +7,7 @@
     },
     "workbookDisplayName": {
       "type": "string",
-      "defaultValue": "04SOC Dashboard",
+      "defaultValue": "2912SOC Dashboard",
       "metadata": {
         "description": "friendly name."
       }
