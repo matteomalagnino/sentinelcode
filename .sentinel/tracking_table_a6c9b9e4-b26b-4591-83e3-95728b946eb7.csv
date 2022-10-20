@@ -1,2 +1,5 @@
 FileName, CommitSha
-AnalyticsRule/test1.json,aaa6a7a7a369e43f8f6fca3734ba112167207c33
+Playbooks/test1.json,e7d94aacc45efd78bbd9052de8e24d4a1b3a02f5
+workbooks/t5socdashboard.json,08af9f587566e84b66885ade650cab0e597c4447
+AnalyticsRule/test1.json,ea7dac04dcd9790d9dbcd0254f75d9b34f86481d
+workbooks/th6.json,8904f407540853ed19052922328946e4d72a5c6d
